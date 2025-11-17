@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sucesso</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="alert alert-success">
+        <h4 class="alert-heading">Lanche cadastrado com sucesso!</h4>
+        <p>
+            Seu Lanche foi cadastrado   
+            <strong th:text="${name}"></strong> 
+        </p>
+
+        <p th:text="${message}"></p>
+        <hr>
+        <a href="/" class="btn btn-primary">Voltar a pagina inicial</a>
+    </div>
+</div>
+</body>
+</html>
