@@ -31,7 +31,7 @@ Antes de começar, certifique-se de ter instalado:
 
 ### 1. Clone o repositório (se aplicável)
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/ClaudioMatheusDev/Restaurante-Python-Burguer-s
 cd demo
 ```
 
