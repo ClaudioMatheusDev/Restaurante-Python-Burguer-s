@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15/11/2025 às 20:17
+-- Tempo de geração: 18/11/2025 às 00:59
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -39,7 +39,8 @@ CREATE TABLE `cardapios` (
 --
 
 INSERT INTO `cardapios` (`id`, `name`, `composicao`, `preco`) VALUES
-(3, 'Burguer HTML', '2 hamburguer, 2 mussarela, bacon, alface, tomate', 22.90);
+(3, 'Burguer HTML', '2 hamburguer, 2 mussarela, bacon, alface, tomate', 22.90),
+(4, 'Lanches', 'lanches ', 12.00);
 
 -- --------------------------------------------------------
 
@@ -60,39 +61,8 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`id`, `name`, `email`, `phone`) VALUES
 (1, 'Atenor', 'Atenor@gmail.com', '(18)99879089867'),
-(2, 'Genostor', 'genost@gmail.com', '18996459890');
-
---
--- Índices para tabelas despejadas
---
-
---
--- Índices de tabela `cardapios`
---
-ALTER TABLE `cardapios`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `clientes`
---
-ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT para tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `cardapios`
---
-ALTER TABLE `cardapios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de tabela `clientes`
---
-ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+(2, 'Genostor', 'genost@gmail.com', '18996459890'),
+(3, 'claudio', 'claudio@gmail.com', '19838138183');
 
 -- --------------------------------------------------------
 
@@ -109,18 +79,6 @@ CREATE TABLE `contatos` (
   `message` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Índices de tabela `contatos`
---
-ALTER TABLE `contatos`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT de tabela `contatos`
---
-ALTER TABLE `contatos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 -- --------------------------------------------------------
 
@@ -139,6 +97,35 @@ CREATE TABLE `encomendas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Despejando dados para a tabela `encomendas`
+--
+
+INSERT INTO `encomendas` (`id`, `cliente_id`, `cardapio_id`, `quantidade`, `observacoes`, `status`, `data_encomenda`) VALUES
+(1, 3, 3, 1, 'adadadad', 'Pendente', '2025-11-17 23:54:03');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `cardapios`
+--
+ALTER TABLE `cardapios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `contatos`
+--
+ALTER TABLE `contatos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices de tabela `encomendas`
 --
 ALTER TABLE `encomendas`
@@ -147,10 +134,36 @@ ALTER TABLE `encomendas`
   ADD KEY `fk_cardapio` (`cardapio_id`);
 
 --
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `cardapios`
+--
+ALTER TABLE `cardapios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de tabela `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `contatos`
+--
+ALTER TABLE `contatos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `encomendas`
 --
 ALTER TABLE `encomendas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Restrições para tabelas despejadas
+--
 
 --
 -- Restrições para tabelas `encomendas`
@@ -158,7 +171,6 @@ ALTER TABLE `encomendas`
 ALTER TABLE `encomendas`
   ADD CONSTRAINT `fk_cardapio` FOREIGN KEY (`cardapio_id`) REFERENCES `cardapios` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_cliente` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`) ON DELETE CASCADE;
-
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
